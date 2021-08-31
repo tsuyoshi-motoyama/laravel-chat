@@ -58,4 +58,14 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function groups()
+    {
+        return $this->belongsToMany('app\Models\Group')->withTimestamps();
+    }
+
+    public function belongsToGroups(int $groupId)
+    {
+        return $this->groups->find($groupId) !== null;
+    }
 }
