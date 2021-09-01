@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\GroupPost;
 
 class Group extends Model
 {
@@ -12,7 +13,7 @@ class Group extends Model
 
     public function users()
     {
-        return $this->belongsToMany('app\Models\User')->withTimestamps();
+        return $this->belongsToMany('App\Models\User')->withTimestamps();
     }
 
     public function messages()

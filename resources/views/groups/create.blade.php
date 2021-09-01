@@ -2,11 +2,15 @@
     <div class="py-3 sm:py-6">
         <div class="max-w-4xl mx-auto sm:px-6">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
-                <div class="border border-red-300 bg-red-100 rounded-sm text-sm p-2 mb-2">
-                    <ul>
-                        <li class="text-red-800">エラー文言</li>
-                    </ul>
-                </div>
+                @if ($errors->any())
+                    <div class="border border-red-300 bg-red-100 rounded-sm text-sm p-2 mb-2">
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li class="text-red-800">{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <form action="/groups" method="post">
                     @csrf
                     <div class="flex flex-col mb-2 sm:flex-row">
@@ -30,24 +34,17 @@
                     <div class="flex flex-col mb-2 sm:flex-row">
                         <div class="w-200 pt-3 text-sm">所属メンバー</div>
                         <div class="flex-1 mt-2 sm:mt-0">
-                            <label class="cursor-pointer mr-2">
-                                <input
-                                    type="checkbox"
-                                    name="userIds[]"
-                                    value="1"
-                                    class="align-middle"
-                                />
-                                <span class="text-sm">ユーザー1</span>
-                            </label>
-                            <label class="cursor-pointer mr-2">
-                                <input
-                                    type="checkbox"
-                                    name="userIds[]"
-                                    value="2"
-                                    class="align-middle"
-                                />
-                                <span class="text-sm">ユーザー2</span>
-                            </label>
+                            @foreach($users as $user)
+                                <label class="cursor-pointer mr-2">
+                                    <input
+                                        type="checkbox"
+                                        name="userIds[]"
+                                        value="{{ $user->id }}"
+                                        class="align-middle"
+                                    />
+                                    <span class="text-sm">{{ $user->name }}</span>
+                                </label>
+                            @endforeach
                         </div>
                     </div>
                     <div class="mt-6 flex justify-center">
