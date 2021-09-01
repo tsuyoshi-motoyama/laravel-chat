@@ -61,10 +61,10 @@ class User extends Authenticatable
 
     public function groups()
     {
-        return $this->belongsToMany('app\Models\Group')->withTimestamps();
+        return $this->belongsToMany('App\Models\Group')->withTimestamps();
     }
 
-    public function belongsToGroups(int $groupId)
+    public function belongsToGroup(int $groupId)
     {
         return $this->groups->find($groupId) !== null;
     }

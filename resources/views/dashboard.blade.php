@@ -8,16 +8,13 @@
         <div class="p-4">
             <h2 class="text-sm font-bold">▼ グループ一覧</h2>
             <ul class="pl-4">
-                <li>
-                    <a class="underline hover:no-underline text-sm arrow" href="{{ route('groups.show', 1) }}">
-                        グループ1
-                    </a>
-                </li>
-                <li>
-                    <a class="underline hover:no-underline text-sm arrow" href="{{ route('groups.show', 2) }}">
-                        グループ2
-                    </a>
-                </li>
+                @foreach($groups as $group)
+                    <li>
+                        <a class="underline hover:no-underline text-sm arrow" href="{{ route('groups.show', ['group' => $group->id]) }}">
+                            {{ $group->name }}
+                        </a>
+                    </li>
+                @endforeach
             </ul>
         </div>
     </x-slot>
